@@ -1,7 +1,4 @@
 class FriendsController < ApplicationController
-  def index
-  end
-  
   def new
   end
 
