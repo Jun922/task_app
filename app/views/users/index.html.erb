@@ -5,6 +5,8 @@
     <ul class='lists-right'>
       <li><%= link_to current_user.name, "#", class: "user-name" %></li>
       <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
+      <%= link_to "ユーザー情報編集", edit_user_path(:user_id) %>
+      <%= link_to "友達を作成する", new_friend_path %>
     </ul>
   <% else %>
     <ul class='lists-right'>
@@ -13,7 +15,3 @@
     </ul>
   <% end %>
 <% end %>
-
-<div>
-  <%= link_to "ユーザー情報編集", edit_user_path(:user_id) %>
-</div>
