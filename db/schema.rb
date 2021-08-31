@@ -10,13 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_30_104057) do
+ActiveRecord::Schema.define(version: 2021_08_31_024535) do
 
   create_table "friends", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
+    t.integer "follower_id"
+    t.integer "followed_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_friends_on_user_id"
+    t.index ["followed_id"], name: "index_friends_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_friends_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_friends_on_follower_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -32,5 +35,4 @@ ActiveRecord::Schema.define(version: 2021_08_30_104057) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "friends", "users"
 end

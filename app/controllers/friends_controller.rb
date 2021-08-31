@@ -1,19 +1,16 @@
 class FriendsController < ApplicationController
-  def new
-    @friend = Friend.new
+  def index
   end
-
+  
   def create
-    @friend = Friend.new(friend_params)
-    if @friend.save
-      redirect_to root_path
-    else
-      render :new
-    end
+    user = User.find(params[:followed_id])
+    current_user.follow(user)
+    redirect_to user
   end
 
-  private
-  def friend_params
-    params.require(:friend).permit(user_ids:[])
+  def destroy
+    user = Friend.find(params[:id]).followed
+    current_user.unfollow(user)
+    redirect_to user
   end
 end
