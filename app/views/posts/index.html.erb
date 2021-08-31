@@ -1,13 +1,16 @@
 <h1>index</h1>
 <%= render "shared/header" %>
 
-<%= link_to "投稿ページ", new_post_path %>
-<% @posts.each do |post|%>
-  <div>
-    <%= post.created_at %>
-  </div>
-  <div>
-    <%= link_to post.user.name, user_path(post.user) %>
-    <%= post.content %>
-  </div>
+
+<% if user_signed_in? %>
+  <%= link_to "投稿ページ", new_post_path %>
+  <% @posts.each do |post|%>
+    <div>
+      <%= post.created_at %>
+    </div>
+    <div>
+      <%= link_to post.user.name, user_path(post.user.id) %>
+      <%= post.content %>
+    </div>
+  <% end %>
 <% end %>

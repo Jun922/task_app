@@ -4,16 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :posts
-  has_many :active_friends, class_name:  "Friend",
+  has_many :active_friends, class_name: "Friend",
             foreign_key: "follower_id",
-            dependent:   :destroy
-  has_many :passive_friends, class_name:  "Friend",
-  foreign_key: "followed_id",
-  dependent:   :destroy
+            dependent: :destroy
+  has_many :passive_friends, class_name: "Friend",
+            foreign_key: "followed_id",
+            dependent: :destroy
 
   has_many :following, through: :active_friends, source: :followed
   has_many :followers, through: :passive_friends, source: :follower
+  has_many :posts
 
   def follow(other_user)
     following << other_user
