@@ -1,0 +1,12 @@
+<h1>index</h1>
+
+<%= form_with model: current_user, local: true do |f|%>
+  <% if user_signed_in? %>
+    <section class="stats">
+      <%= render 'shared/stats' %>
+    </section>
+    <%= link_to "アカウント情報編集", edit_user_path(:user_id) %>
+  <% else %>
+    <%= render 'users/follow_form' if user_signed_in? %>
+  <% end %>
+<% end %>
