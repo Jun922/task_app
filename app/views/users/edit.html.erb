@@ -9,5 +9,5 @@
   <% end %>
 </div>
 
-<%= link_to "アカウントを削除する", current_user, method: :delete %>
-<%= link_to "マイページに戻る", :back, class: 'btn'%>
+<%= link_to "アカウントを削除する", user_path(current_user.id), method: :delete %>
+<%= link_to "マイページに戻る", :back %>
