@@ -1,12 +1,15 @@
 class PostsController < ApplicationController
+  def index
+    @posts = Post.all
+  end
+  
   def new
     @post = Post.new
   end
 
   def create
-    Post.create(post_params)
-    if @post.valid?
-      @post.Save
+    @post = Post.new(post_params)
+    if @post.save
       redirect_to root_path
     else
       render :new
@@ -15,6 +18,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:image, :content).merge(user_id: current_user.id)
+    params.require(:post).permit(:content).merge(user_id: current_user.id)
   end
 end

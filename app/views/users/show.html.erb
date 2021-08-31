@@ -1,4 +1,4 @@
-<h1>index</h1>
+<h3><%= @user.name %></h3>
 
 <%= form_with model: current_user, local: true do |f|%>
   <% if user_signed_in? %>
@@ -6,7 +6,7 @@
       <%= render 'shared/stats' %>
     </section>
     <%= link_to "アカウント情報編集", edit_user_path(:user_id) %>
-  <% else %>
+    <% else %>
     <%= render 'users/follow_form' if user_signed_in? %>
   <% end %>
 <% end %>

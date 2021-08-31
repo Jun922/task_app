@@ -1,15 +1,13 @@
 <h1>index</h1>
+<%= render "shared/header" %>
 
-<%= form_with model: current_user, local: true do |f|%>
-  <% if user_signed_in? %>
-    <ul>
-      <%= link_to "#{current_user.name}さん", user_path(current_user.id) %>
-      <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
-    </ul>
-  <% else %>
-    <ul>
-      <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
-      <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
-    </ul>
-  <% end %>
+<%= link_to "投稿ページ", new_post_path %>
+<% @posts.each do |post|%>
+  <div>
+    <%= post.created_at %>
+  </div>
+  <div>
+    <%= link_to post.user.name, user_path(post.user) %>
+    <%= post.content %>
+  </div>
 <% end %>

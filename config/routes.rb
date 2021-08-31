@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update, :destroy]
   resources :friends, only: [:create, :destroy]
-  resources :posts, only: [:index, :create, :destroy]
+  resources :posts, only: [:index, :new, :create]
 
   resources :users do
     member do
