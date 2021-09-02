@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if User.find(params[:id]).destroy
+    if current_user.destroy(user_params)
       redirect_to root_path
     else
       render :edit

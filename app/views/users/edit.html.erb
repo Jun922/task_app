@@ -5,9 +5,9 @@
   <%= form_with model: current_user, local: true do |f|%>
     <%= f.label :name %>
     <%= f.text_area :name, autofocus: true %>
-    <%= f.submit "Update", class: 'btn'%>
+    <%= f.submit "Update" %>
   <% end %>
 </div>
 
-<%= link_to "アカウントを削除する", current_user, method: :delete %>
+<%= render 'users/destroy' %>
 <%= link_to "マイページに戻る", :back %>
