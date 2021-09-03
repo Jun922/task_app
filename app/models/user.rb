@@ -28,4 +28,5 @@ class User < ApplicationRecord
   end
 
   validates :name, presence: true
+  validates :password, length: { minimum: 6 }, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: "is invalid. Input half-width characters."}
 end
